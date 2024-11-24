@@ -6,8 +6,27 @@ public static class Arrays
     /// integer greater than 0.
     /// </summary>
     /// <returns>array of doubles that are the multiples of the supplied number</returns
+    public static void Run(){
+        // MultiplesOf Exercise
+        double number = 8; // Base Number
+        int length = 6;    // Number of multiples to generate
+        double[] multiples = MultiplesOf(number, length); // Call the function to get the multiples
+        Console.WriteLine("Múltiplos de " + number + ": " + string.Join(", ", multiples)); // Print the array of multiples
+
+
+        // RotateListRight Exercise
+        List<int> data = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 }; // Initial example list
+        int amount = 5; // Number of rotations
+        RotateListRight(data, amount); // Call the function to rotate the list
+        Console.WriteLine("Lista rotada: " + string.Join(", ", data)); // Print the resulting list
+    }
 
     public static double[] MultiplesOf(double number, int length){
+
+        // Step 1: Create an array of size 'length' to store the multiples
+        // Step 2: Fill the array with the multiples of the number and Calculate the multiple
+        // Step 3: Return the array with the multiples
+
         double[] results = new double[length];
         for (int i = 1; i <= length; ++i) {
             results [i - 1] = i * number;
@@ -25,14 +44,11 @@ public static class Arrays
     /// </summary>
     public static void RotateListRight(List<int> data, int amount)
     {
-        // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
-
-        // Plan to solve the problem:
-        // Calculate the rotation point, split the list into two parts by storing the last amount elements in a new list and storing the first ones in another list. 
-        // Then, join the last ones with the first ones
+        // TStep-by-step plan:
+        //    1. Determine the starting index of the new list:
+        //    2. Split the list
+        //    2. We will join the two segments, placing the end at the beginning.
+        //    3. Return the new rotated list
 
 
         // Step 1: Identify how many items to take from the end of the list
@@ -50,7 +66,5 @@ public static class Arrays
         data.Clear();          // Clear the original list
         data.AddRange(lastPart); // Add the last items to the beginning
         data.AddRange(firstPart); // dd the remaining items to the end
-
-
     }
 }
