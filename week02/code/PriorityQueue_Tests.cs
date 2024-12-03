@@ -9,21 +9,72 @@ public class PriorityQueueTests
     // Scenario: 
     // Expected Result: 
     // Defect(s) Found: 
-    public void TestPriorityQueue_1()
+    public void TestPriorityQueue_Priorities()
     {
-        var priorityQueue = new PriorityQueue();
-        Assert.Fail("Implement the test case and then remove this.");
+        //We add various Values ​​with different priorities
+        var bob = new PriorityItem ("Bob", 2);
+        var tim = new PriorityItem ("Tim", 5);
+        var sue = new PriorityItem ("Sue", 3);
+        var ed = new PriorityItem ("Ed", 2);
+
+        var players = new PriorityQueue();
+        players.Enqueue (bob.Value, bob.Priority);
+        players.Enqueue (tim.Value, tim.Priority);
+        players.Enqueue (sue.Value, sue.Priority);
+        players.Enqueue (ed.Value, ed.Priority);
+
+        // We removed and verified that the removal was done in the correct order.
+        Assert.AreEqual("Tim", players.Dequeue());
+        Assert.AreEqual("Sue", players.Dequeue());
+        Assert.AreEqual("Bob", players.Dequeue());
+        Assert.AreEqual("Ed", players.Dequeue());
     }
 
     [TestMethod]
     // Scenario: 
     // Expected Result: 
     // Defect(s) Found: 
-    public void TestPriorityQueue_2()
+    public void TestPriorityQueue_2_Empty()
     {
-        var priorityQueue = new PriorityQueue();
-        Assert.Fail("Implement the test case and then remove this.");
+        var players = new PriorityQueue();
+
+        try
+        {
+            players.Dequeue();
+            Assert.Fail("Exception should have been thrown.");
+        }
+        catch (InvalidOperationException e)
+        {
+            Assert.AreEqual("The queue is empty.", e.Message);
+        }
+        catch (AssertFailedException)
+        {
+            throw;
+        }
+        catch (Exception e)
+        {
+            Assert.Fail(
+                 string.Format("Unexpected exception of type {0} caught: {1}",
+                                e.GetType(), e.Message)
+            );
+        }
     }
 
-    // Add more test cases as needed below.
+    [TestMethod]
+    // Scenario: 
+    // Expected Result: 
+    // Defect(s) Found: 
+    public void TestPriorityQueue_3_Dequeue() {
+
+        //We add various Values ​​with different priorities
+        var queue = new PriorityQueue();
+            queue.Enqueue("A", 1);
+            queue.Enqueue("B", 2);
+            queue.Enqueue("C", 3);
+         
+        // We verify that the elements are being removed
+        Assert.AreEqual("C", queue.Dequeue());
+        Assert.AreEqual("B", queue.Dequeue());
+        Assert.AreEqual("A", queue.Dequeue());
+    }
 }
