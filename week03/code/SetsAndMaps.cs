@@ -63,6 +63,20 @@ public static class SetsAndMaps
         {
             var fields = line.Split(",");
             // TODO Problem 2 - ADD YOUR CODE HERE
+
+            // Extract the title assuming it is in the fourth column
+            string degree = fields[3];
+
+            // Update the dictionary
+            if (degrees.ContainsKey(degree)) // Check if the title already exists in the dictionary.
+            {
+                degrees[degree]++; // If it exists, increment the count by 1
+            }
+            else
+            {
+                degrees[degree] = 1; // If it doesn't exist, it adds it to the dictionary with an initial count of 1.
+            }
+
         }
 
         return degrees;
